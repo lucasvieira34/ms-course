@@ -1,11 +1,10 @@
 package com.microsservice.hrworker.controller;
 
-import com.microsservice.hrworker.entity.Worker;
-import com.microsservice.hrworker.repository.WorkerRepository;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.microsservice.hrworker.entity.Worker;
+import com.microsservice.hrworker.repository.WorkerRepository;
 
 @RefreshScope
 @RestController
@@ -22,9 +22,6 @@ import java.util.List;
 public class WorkerController {
 
     private static Logger logger = LoggerFactory.getLogger(WorkerController.class);
-
-    @Value("${test.config}")
-    private String testConfig;
 
     @Autowired
     private Environment env;
@@ -34,7 +31,7 @@ public class WorkerController {
 
     @GetMapping(value = "/configs")
     public ResponseEntity<Void> getConfigs() {
-        logger.info("CONFIG = " + testConfig);
+        //logger.info("CONFIG = " + testConfig);
         return ResponseEntity.noContent().build();
     }
 
